@@ -1,1 +1,113 @@
-My hunters game
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hunter vs Hunted</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Start Screen -->
+    <div id="startScreen" class="screen active">
+        <div class="container">
+            <h1>🎯 Hunter vs Hunted</h1>
+            <p class="subtitle">A GPS-based mobile game</p>
+            
+            <div class="form-group">
+                <label for="playerName">Your Name</label>
+                <input type="text" id="playerName" placeholder="Enter your name" maxlength="20">
+            </div>
+            
+            <div class="form-group">
+                <label for="gameCode">Game Code</label>
+                <input type="text" id="gameCode" placeholder="Enter or create game code" maxlength="10">
+            </div>
+            
+            <div class="form-group">
+                <label>Your Role</label>
+                <div class="role-buttons">
+                    <button class="role-btn" data-role="hunter">
+                        <span class="role-icon">🏹</span>
+                        <span class="role-name">Hunter</span>
+                    </button>
+                    <button class="role-btn" data-role="hunted">
+                        <span class="role-icon">🦌</span>
+                        <span class="role-name">Hunted</span>
+                    </button>
+                </div>
+            </div>
+            
+            <button id="startBtn" class="btn-primary" disabled>Start Game</button>
+            
+            <div class="info-text">
+                <p><strong>Rules:</strong></p>
+                <ul>
+                    <li>Game duration: 10 minutes</li>
+                    <li>You see opponent positions from 2 minutes ago</li>
+                    <li>Hunters win if they get within 50m of hunted</li>
+                    <li>Keep your phone's location services on</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Game Screen -->
+    <div id="gameScreen" class="screen">
+        <div id="header">
+            <div class="header-left">
+                <div class="player-info">
+                    <span id="playerNameDisplay"></span>
+                    <span id="playerRole" class="role-badge"></span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="timer" id="timer">10:00</div>
+            </div>
+        </div>
+        
+        <div id="map"></div>
+        
+        <div id="statusBar">
+            <div class="status-item">
+                <span class="status-label">GPS Accuracy:</span>
+                <span id="accuracyDisplay">--</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Players:</span>
+                <span id="playerCount">0/4</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Last Update:</span>
+                <span id="lastUpdate">--</span>
+            </div>
+        </div>
+        
+        <div id="controls">
+            <button id="centerBtn" class="control-btn">
+                <span>📍</span>
+                <span class="btn-label">Center</span>
+            </button>
+            <button id="leaveBtn" class="control-btn danger">
+                <span>🚪</span>
+                <span class="btn-label">Leave</span>
+            </button>
+        </div>
+    </div>
+    
+    <!-- End Screen -->
+    <div id="endScreen" class="screen">
+        <div class="container">
+            <h1 id="endTitle">Game Over</h1>
+            <div id="endMessage" class="end-message"></div>
+            <button id="newGameBtn" class="btn-primary">New Game</button>
+        </div>
+    </div>
+    
+    <!-- Notification Toast -->
+    <div id="toast" class="toast"></div>
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
